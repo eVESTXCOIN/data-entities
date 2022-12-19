@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "rollup -c && tsc -p ./ -m commonjs",
-    "postversion": "npm publish && git push"
+    "post": "npm publish --access public && git push -f origin main"
   },
   "devDependencies": {
     "@types/chai": "^4.1.5",
