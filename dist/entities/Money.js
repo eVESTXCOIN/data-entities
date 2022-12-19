@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Money = void 0;
 var bignumber_1 = require("@evestx/bignumber");
 var utils_1 = require("../utils");
 var Money = /** @class */ (function () {
@@ -9,7 +8,7 @@ var Money = /** @class */ (function () {
     function Money(coins, asset) {
         var divider = Money._getDivider(asset.precision);
         this.asset = asset;
-        this._coins = (0, utils_1.toBigNumber)(coins).roundTo(0, 3 /* ROUND_FLOOR */);
+        this._coins = utils_1.toBigNumber(coins).roundTo(0, 3 /* ROUND_FLOOR */);
         this._tokens = this._coins.div(divider);
     }
     Money.prototype.getCoins = function () {
@@ -94,7 +93,7 @@ var Money = /** @class */ (function () {
         return new Money(coins, this.asset);
     };
     Money.prototype.convertTo = function (asset, exchangeRate) {
-        return Money.convert(this, asset, (0, utils_1.toBigNumber)(exchangeRate));
+        return Money.convert(this, asset, utils_1.toBigNumber(exchangeRate));
     };
     Money.prototype.toJSON = function () {
         return {
@@ -103,7 +102,7 @@ var Money = /** @class */ (function () {
         };
     };
     Money.prototype.toString = function () {
-        return "".concat(this.toTokens(), " ").concat(this.asset.id);
+        return this.toTokens() + " " + this.asset.id;
     };
     Money.prototype._matchAssets = function (money) {
         if (this.asset.id !== money.asset.id) {
@@ -144,7 +143,7 @@ var Money = /** @class */ (function () {
         }
     };
     Money.fromTokens = function (count, asset) {
-        var tokens = (0, utils_1.toBigNumber)(count);
+        var tokens = utils_1.toBigNumber(count);
         return new Money(tokens.mul(new bignumber_1.BigNumber(10).pow(asset.precision)), asset);
     };
     Money.fromCoins = function (count, asset) {

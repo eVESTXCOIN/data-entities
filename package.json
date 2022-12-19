@@ -14,8 +14,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c && tsc -p ./ -m commonjs",
-    "post": "npm publish --access public && git push -f origin main"
+    "prepare": "tsc --declaration && npm run build && npm run uglify",
+    "uglify": "node_modules/.bin/uglifyjs ./dist/index.js -o ./dist/data-entities.min.js",
+    "build": "./node_modules/.bin/browserify ./dist/index.js --node -s data-entities -u @evestx/bignumber -o ./dist/data-entities.js",
+    "post": "npm publish && git push"
   },
   "devDependencies": {
     "@types/chai": "^4.1.5",

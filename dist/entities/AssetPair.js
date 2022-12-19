@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AssetPair = void 0;
 var AssetPair = /** @class */ (function () {
     function AssetPair(amountAsset, priceAsset) {
         this.amountAsset = amountAsset;
@@ -15,7 +14,7 @@ var AssetPair = /** @class */ (function () {
         };
     };
     AssetPair.prototype.toString = function () {
-        return "".concat(this.amountAsset, "/").concat(this.priceAsset);
+        return this.amountAsset + "/" + this.priceAsset;
     };
     AssetPair.isAssetPair = function (object) {
         return object instanceof AssetPair;
