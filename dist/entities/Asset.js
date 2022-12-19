@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Asset = void 0;
 var config_1 = require("../config");
 var utils_1 = require("../utils");
 var Asset = /** @class */ (function () {
     function Asset(assetObject) {
         assetObject = config_1.config.get('remapAsset')(assetObject);
-        this.quantity = utils_1.toBigNumber(assetObject.quantity);
-        this.minSponsoredFee = utils_1.toBigNumber(assetObject.minSponsoredFee);
+        this.quantity = (0, utils_1.toBigNumber)(assetObject.quantity);
+        this.minSponsoredFee = (0, utils_1.toBigNumber)(assetObject.minSponsoredFee);
         this.ticker = assetObject.ticker || null;
         this.id = assetObject.id;
         this.name = assetObject.name;

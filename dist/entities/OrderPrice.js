@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.OrderPrice = void 0;
 var bignumber_1 = require("@evestx/bignumber");
 var utils_1 = require("../utils");
 var OrderPrice = /** @class */ (function () {
@@ -33,15 +34,15 @@ var OrderPrice = /** @class */ (function () {
         };
     };
     OrderPrice.prototype.toString = function () {
-        return this.toTokens() + " " + this.pair.amountAsset.id + "/" + this.pair.priceAsset.id;
+        return "".concat(this.toTokens(), " ").concat(this.pair.amountAsset.id, "/").concat(this.pair.priceAsset.id);
     };
     OrderPrice.fromMatcherCoins = function (coins, pair) {
         OrderPrice._checkAmount(coins);
-        return new OrderPrice(utils_1.toBigNumber(coins), pair);
+        return new OrderPrice((0, utils_1.toBigNumber)(coins), pair);
     };
     OrderPrice.fromTokens = function (tokens, pair) {
         OrderPrice._checkAmount(tokens);
-        tokens = utils_1.toBigNumber(tokens).toFixed(pair.priceAsset.precision);
+        tokens = (0, utils_1.toBigNumber)(tokens).toFixed(pair.priceAsset.precision);
         var divider = OrderPrice._getMatcherDivider(pair.precisionDifference);
         var coins = new bignumber_1.BigNumber(tokens).mul(divider);
         return new OrderPrice(coins, pair);

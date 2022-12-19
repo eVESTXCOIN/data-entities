@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Candle = void 0;
 var config_1 = require("../config");
 var utils_1 = require("../utils");
 var Candle = /** @class */ (function () {
@@ -15,7 +16,7 @@ var Candle = /** @class */ (function () {
             'quoteVolume',
             'weightedAveragePrice',
         ];
-        bigNumbers.forEach(function (key) { return (_this[key] = utils_1.toBigNumber(candleObject[key])); });
+        bigNumbers.forEach(function (key) { return (_this[key] = (0, utils_1.toBigNumber)(candleObject[key])); });
         this.time = candleObject.time;
         this.maxHeight = candleObject.maxHeight;
         this.txsCount = candleObject.txsCount;
